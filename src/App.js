@@ -7,14 +7,14 @@ function App() {
     const [statusText, setStatusText] = useState('Click on the button');
 
     async function btnClick() {
-        let msg = "hello world";
-        let messageBuf = console.log(Buffer.from(msg, 'utf8').toString('hex'))
+        // let msg = "hello world";
+        // let messageBuf = console.log(Buffer.from(msg, 'utf8').toString('hex'))
         // let messageBuf = Buffer.from(msg, "hex");
         // console.log(messageBuf);
         let command = {
             name: "sign",
             keyNo: 1,
-            message: messageBuf,
+            message: "000100020003",
             // legacySignCommand: true,
         };
         let res;
