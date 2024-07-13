@@ -1,23 +1,24 @@
 import React, {useState} from 'react';
 import './App.css';
 import {execHaloCmdWeb} from "@arx-research/libhalo/api/web.js";
+import {Buffer} from 'buffer/index.js';
 
 function App() {
     const [statusText, setStatusText] = useState('Click on the button');
 
     async function btnClick() {
+        let msg = "hello world";
+        console.log(Buffer.from(msg, 'utf8').toString('hex'))
+        // let messageBuf = Buffer.from(msg, "hex");
+        // console.log(messageBuf);
         let command = {
             name: "sign",
             keyNo: 1,
             message: "010203",
-            /* uncomment the line below if you get an error about setting "command.legacySignCommand = true" */
             // legacySignCommand: true,
         };
-
         let res;
-
         try {
-            // --- request NFC command execution ---
             res = await execHaloCmdWeb(command, {
                 statusCallback: (cause) => {
                     if (cause === "init") {
@@ -31,7 +32,6 @@ function App() {
                     }
                 }
             });
-            // the command has succeeded, display the result to the user
             setStatusText(JSON.stringify(res, null, 4));
         } catch (e) {
             // the command has failed, display error to the user
