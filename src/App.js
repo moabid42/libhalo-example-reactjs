@@ -8,13 +8,13 @@ function App() {
 
     async function btnClick() {
         let msg = "hello world";
-        console.log(Buffer.from(msg, 'utf8').toString('hex'))
+        let messageBuf = console.log(Buffer.from(msg, 'utf8').toString('hex'))
         // let messageBuf = Buffer.from(msg, "hex");
         // console.log(messageBuf);
         let command = {
             name: "sign",
             keyNo: 1,
-            message: "010203",
+            message: messageBuf,
             // legacySignCommand: true,
         };
         let res;
